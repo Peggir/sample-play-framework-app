@@ -1,0 +1,39 @@
+@()(implicit request: play.mvc.Http.Request)
+
+@views.html.frame("Home") {
+    <div class="row">
+        <div class="col-12">
+            <h1>Submit form</h1>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-12 col-lg-6">
+            <form id="contact-form">
+                <div class="form-row">
+                    <div class="col-12">
+                        <label for="form-name">Name</label>
+                        <input type="text" class="form-control" id="form-name" value="Mark" required/>
+                        <div class="invalid-feedback">Please enter a valid name.</div>
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col-12">
+                        <label for="form-email">E-mail address</label>
+                        <input type="email" class="form-control" id="form-email" value="Mark@@example.com" required/>
+                        <div class="invalid-feedback">Please enter a valid e-mail address.</div>
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col-12">
+                        <label for="form-message">Message</label>
+                        <textarea class="form-control" id="form-message" required>This is my message.</textarea>
+                        <div class="invalid-feedback">Please enter a valid message.</div>
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <button id="form-submit-btn" class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}

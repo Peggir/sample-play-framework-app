@@ -1,0 +1,14 @@
+# Routes
+
+# Landings pages
+GET           /                                   controllers.Application.index(request: Request)
+GET           /overview                           controllers.Application.overview(request: Request)
+GET           /about                              controllers.Application.about(request: Request)
+
+# API
+POST          /contact-form                       controllers.api.ContactFormApi.submit(request: Request)
+DELETE        /contact-form/:contactFormId        controllers.api.ContactFormApi.delete(contactFormId: Integer)
+
+# Resources
+GET           /assets/v/*file                     controllers.Assets.versioned(path="/public", file: Asset)
+GET           /assets/*file                       controllers.Assets.at(path="/public", file)

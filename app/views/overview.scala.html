@@ -1,0 +1,38 @@
+@import data.models.ContactForm
+@(contactForms: java.util.List[ContactForm])(implicit request: play.mvc.Http.Request)
+
+@views.html.frame("Overview") {
+    <div class="row">
+        <div class="col-12">
+            <h1>Submitted forms</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">E-mail address</th>
+                            <th scope="col">Date</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(form <- contactForms) {
+                            <tr id="form-row-@form.getId">
+                                <th class="text-nowrap" scope="row">@form.getId</th>
+                                <td class="text-nowrap">@form.getName</td>
+                                <td class="text-nowrap">@form.getEmailAddress</td>
+                                <td class="text-nowrap">@form.getCreationDate.format("YYYY-MM-dd HH:mm")</td>
+                                <td class="text-nowrap text-right"><button type="button" data-id="@form.getId" class="btn btn-danger delete-form-btn">Delete</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

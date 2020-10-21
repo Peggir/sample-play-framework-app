@@ -1,0 +1,25 @@
+@import com.typesafe.config.ConfigFactory
+
+@()(implicit request: play.mvc.Http.Request)
+
+@views.html.frame("About") {
+    <div class="container">
+        <div class="col-12">
+            <div class="jumbotron jumbotron-fluid pl-3 pr-3">
+                <h1 class="display-4">sample-play-framework-app</h1>
+                <p class="lead">
+                    This is a sample web application build on the Play! Framework. You can clone it from <a target="_blank" href="https://github.com/Peggir/sample-play-framework-app">https://github.com/Peggir/sample-play-framework-app</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-12 col-lg-6">
+            <ul class="list-group">
+                <li class="list-group-item">Version: @ConfigFactory.load().getString("application.version")</li>
+                <li class="list-group-item">Environment: @ConfigFactory.load().getString("application.env")</li>
+            </ul>
+        </div>
+    </div>
+}

@@ -1,0 +1,52 @@
+@import views.html.helper.CSRF
+
+@(title: String)(content: Html)(implicit request: play.mvc.Http.Request)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("img/favicon.ico")"/>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/libs/bootstrap/bootstrap.min.css")"/>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/main.min.css")"/>
+
+        <title>@title - Sample App</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="@controllers.routes.Application.index">Sample App</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link @if(title == "Home"){active}" href="@controllers.routes.Application.index">Home</a>
+                        <a class="nav-link @if(title == "Overview"){active}" href="@controllers.routes.Application.overview">Overview</a>
+                        <a class="nav-link @if(title == "About"){active}" href="@controllers.routes.Application.about">About</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="pt-5 pb-5">
+            <div class="container">
+                @content
+            </div>
+        </section>
+
+        @helper.javascriptRouter("jsRoutes")(
+            controllers.api.routes.javascript.ContactFormApi.submit,
+            controllers.api.routes.javascript.ContactFormApi.delete
+        )
+
+        <script>
+            var csrfToken = '@CSRF.getToken.value';
+        </script>
+        <script type="text/javascript" src="@routes.Assets.at("js/libs/jquery/jquery-3.4.1.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("js/libs/bootstrap/bootstrap.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("js/main.js")"></script>
+    </body>
+</html>
